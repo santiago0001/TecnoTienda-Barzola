@@ -1,4 +1,5 @@
 import React from 'react'
+import { CardWidget } from './CardWidget'
 
 export const NavBar = () => {
 
@@ -19,8 +20,8 @@ export const NavBar = () => {
 
     const styleSections = {
         display: 'inline-block',
-        paddingLeft:'10%',
-        fontSize:'25px',
+        paddingLeft:'5%',
+        fontSize:'20px',
         fontWeight: '800'
     }
     return (
@@ -42,6 +43,9 @@ export const NavBar = () => {
             <a  style={StyleLinks} href="#OFERTA">
             Ofertas
             </a>
+            </div>
+            <div style={styleSections} >
+            <CardWidget/>
             </div>
         </div>
     )

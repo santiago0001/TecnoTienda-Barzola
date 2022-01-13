@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { NavBar } from './components/NavBar';
+import { ItemListContainer } from './components/ItemListContainer';
 
 function App() {
   return (
   <div>
     <NavBar/>
-    <h2>Ofertas de la semana!</h2>
+    
+    <ItemListContainer getting="Ofertas de la semana!"/>
   </div>
   );
 }
