@@ -13,6 +13,10 @@ export const ItemCount = ({ item }) => {
   const useStyles = makeStyles({
     root: {
       width: "100%",
+      backgroundColor: "#C8EAFC",
+      borderStyle: "solid",
+      borderWidth: "0.5px",
+      borderColor: "#B4B4B4",
     },
     bullet: {
       display: "inline-block",
@@ -31,15 +35,21 @@ export const ItemCount = ({ item }) => {
       justifyContent: "center",
     },
     Center: { display: "flex", justifyContent: "center" },
-    img: { width: "50%" },
-    buttonAdd: { fontSize: "30px" },
-    ButtonRest: { fontSize: "50px" },
+    img: {
+      width: "50%",
+      maxHeight: "200px",
+      minHeight: "200px",
+      maxWidth: "100px",
+    },
+    buttonAdd: { fontSize: "30px", padding: "0px" },
+    ButtonRest: { fontSize: "50px", padding: "0px" },
 
     ButtonAgregar: {
-      backgroundColor: "rgba(65,137,230,.15)",
+      backgroundColor: "rgba(65,137,230,15)",
       padding: "10px 20px 10px;",
     },
     padding10: { padding: "10px" },
+    Cantidad: { padding: "0px" },
   });
 
   console.log(item);
@@ -66,16 +76,19 @@ export const ItemCount = ({ item }) => {
       <div>
         <Card className={classes.root}>
           <Box className={classes.Center}>
-            <Typography variant="h5" component="h2">
+            <img className={classes.img} src={item.srcimg} alt={item.title} />
+          </Box>
+          <Box className={classes.Center}>
+            <Typography variant="h6" component="h4">
               {item.title}
             </Typography>
           </Box>
-          <Box>
-            <img className={classes.img} src={item.srcimg} alt={item.title} />
-            <br />
-            {item.description}
+          <Box className={classes.Center}>
+            <Typography variant="h9" component="h8">
+              {item.description}
+            </Typography>
           </Box>
-          <CardContent>
+          <CardContent className={classes.Cantidad}>
             {item.stock === counter && (
               <p style={{ color: "red" }}>* Llego al stock maximo</p>
             )}
