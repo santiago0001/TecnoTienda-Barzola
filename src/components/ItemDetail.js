@@ -26,39 +26,27 @@ const ItemDetail = ({ item }) => {
   const DisableNextImg = (index, cantImg) => {
     return index < cantImg ? true : false;
   };
-
+  console.log(item);
   const classes = useStyles();
   return (
     <div>
       <Card className={classes.root}>
-        <Button
-          disabled={DisableBackImg(IndexImg)}
-          onClick={() => SetIndexImg(IndexImg - 1)}
-        >
-          <ArrowBackIosIcon />
-        </Button>
-        <img
-          className={classes.img}
-          src={item.srcimg[IndexImg]}
-          alt={item.title}
-        />
-        <Button onClick={() => SetIndexImg(IndexImg + 1)}>
-          <NavigateNextIcon />
-        </Button>
-        <Box style={{ padding: "10px" }}>
-          <h1>{item.title}</h1>
-          <h1>$ {item.precio}</h1>
-          Almacenamiento: <h3>{item.description.memoria}</h3>
-          Sim: <h3>{item.description.sim}</h3>
-          RAM: <h3>{item.description.Ram}</h3>
-        </Box>
-        <Box style={{ padding: "10px", marginTop: "200px" }}>
-          <h2>Llega mañana</h2>
-          <p> Cantidad: 1 unidad ({item.stock}disponibles) </p>
-          <Button size="large" color="primary">
-            Comprar ahora
-          </Button>
-        </Box>
+        <img className={classes.img} src={item.srcimg} alt={item.title} />
+
+        <div>
+          <Box style={{ padding: "10px" }}>
+            <h1>{item.title}</h1>
+            <h1>$ {item.precio}</h1>
+            Descripcion: {item.description}
+          </Box>
+          <Box style={{ padding: "10px", marginTop: "20px" }}>
+            <h2>Llega mañana</h2>
+            <p> Cantidad: 1 unidad ({item.stock} disponibles) </p>
+            <Button size="large" color="primary">
+              Comprar ahora
+            </Button>
+          </Box>
+        </div>
       </Card>
     </div>
   );

@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export const ItemCount = ({ item }) => {
   const useStyles = makeStyles({
@@ -47,6 +48,7 @@ export const ItemCount = ({ item }) => {
     ButtonAgregar: {
       backgroundColor: "rgba(65,137,230,15)",
       padding: "10px 20px 10px;",
+      borderRadius: "5px",
     },
     padding10: { padding: "10px" },
     Cantidad: { padding: "0px" },
@@ -84,37 +86,25 @@ export const ItemCount = ({ item }) => {
             </Typography>
           </Box>
           <Box className={classes.Center}>
-            <Typography variant="h9" component="h8">
-              {item.description}
-            </Typography>
+            <Typography variant="h9" component="h8"></Typography>
           </Box>
           <CardContent className={classes.Cantidad}>
             {item.stock === counter && (
               <p style={{ color: "red" }}>* Llego al stock maximo</p>
             )}
             <Box className={classes.CarCount}>
-              <Button
-                className={classes.ButtonRest}
-                onClick={reduce}
-                disabled={disableReduce()}
-              >
-                -
-              </Button>
-              <p>{counter}</p>
-              <Button
-                className={classes.buttonAdd}
-                onClick={add}
-                disabled={disableAdd()}
-              >
-                +
-              </Button>
+              Stock disponible: {item.stock}
             </Box>
           </CardContent>
 
           <Box className={classes.Center} style={{ padding: "0px 10px 10px" }}>
-            <Button className={classes.ButtonAgregar} onClick={onAdd}>
-              Agregar al carrito
-            </Button>
+            <Link
+              to={`/item/${item.id}`}
+              className={classes.ButtonAgregar}
+              style={{ color: "white", padding: "10px" }}
+            >
+              Ver detalle
+            </Link>
           </Box>
         </Card>
       </div>

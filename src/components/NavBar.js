@@ -16,6 +16,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Box, Button } from "@material-ui/core";
 import { CardWidget } from "./CardWidget";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   inputRoot: {
-    color: "inherit",
+    color: "white",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -176,7 +177,10 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            TecnoTienda
+            <Link to="/" style={{ color: "white", padding: "10px" }}>
+              {" "}
+              TecnoTienda
+            </Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -192,10 +196,27 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <Box>
-            <Button classes={{ root: classes.inputRoot }}>Catalogo</Button>
-            <Button classes={{ root: classes.inputRoot }}>Ofertas</Button>
-            <Button classes={{ root: classes.inputRoot }}>Sucursales</Button>
-            <Button classes={{ root: classes.inputRoot }}>Contacto</Button>
+            <Link to="/" style={{ color: "white", padding: "10px" }}>
+              Inicio
+            </Link>
+            <Link
+              to="/Category/celulares"
+              style={{ color: "white", padding: "10px" }}
+            >
+              Celulares
+            </Link>
+            <Link
+              to="/Category/Perifericos"
+              style={{ color: "white", padding: "10px" }}
+            >
+              Perifericos
+            </Link>
+            <Link
+              to="/Category/Otros"
+              style={{ color: "white", padding: "10px" }}
+            >
+              Otros
+            </Link>
           </Box>
 
           <div className={classes.grow} />

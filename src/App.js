@@ -4,15 +4,31 @@ import PrimarySearchAppBar, { NavBar } from "./components/NavBar";
 import { ItemListContainer } from "./components/ItemListContainer";
 import ItemCount from "./components/ItemCount";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import Provider from "./context/LoadingContext";
+import { useContext } from "react";
 
 function App() {
   return (
-    <div>
-      <PrimarySearchAppBar />
+    <Router>
+      <div>
+        <PrimarySearchAppBar />
 
-      <ItemDetailContainer></ItemDetailContainer>
-      <ItemListContainer getting="Ofertas de la semana!" />
-    </div>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route exact path="/">
+            <ItemListContainer />
+          </Route>
+          <Route exact path="/Category/:categoriaId">
+            <ItemListContainer />
+          </Route>
+          <Route exact path="/item/:idItem">
+            <ItemDetailContainer></ItemDetailContainer>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
