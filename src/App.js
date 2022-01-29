@@ -2,11 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import PrimarySearchAppBar, { NavBar } from "./components/NavBar";
 import { ItemListContainer } from "./components/ItemListContainer";
-import ItemCount from "./components/ItemCount";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Provider from "./context/LoadingContext";
 import { useContext } from "react";
+import Cart from "./components/Cart";
 
 function App() {
   return (
@@ -25,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/item/:idItem">
             <ItemDetailContainer></ItemDetailContainer>
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
           </Route>
         </Switch>
       </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { ItemCount } from "./ItemCount";
+import { ItemCount } from "./ItemPoducto";
 
 import { ItemList } from "./ItemList";
 
