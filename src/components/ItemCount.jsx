@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "@material-ui/core/Card";
 
 import CardActions from "@material-ui/core/CardActions";
@@ -8,8 +8,20 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core";
+import { cartContext } from "../context/CartProvider";
 
-export const ItemCount = ({stock,onAdd,add,reduce,disableAdd,disableReduce,counter}) => {
+export const ItemCount = ({
+  stock,
+  onAdd,
+  add,
+  reduce,
+  disableAdd,
+  disableReduce,
+  counter,
+  id,
+  title,
+  precio,
+}) => {
   const useStyles = makeStyles({
     root: {
       width: "100%",
@@ -51,11 +63,25 @@ export const ItemCount = ({stock,onAdd,add,reduce,disableAdd,disableReduce,count
     padding10: { padding: "10px" },
     Cantidad: { padding: "0px" },
   });
-
-
+  const { cart, setCart } = useContext(cartContext);
 
   const classes = useStyles();
 
+  const isInCart = (id) => {
+    return cart.some((element) => element.id == id);
+  };
+
+  const AddCart = (item) => {
+    if (isInCart(item.id)) {
+      const indexItem = cart.findIndex((ele) => ele.id === item.id);
+      cart[indexItem].cantidad = cart[indexItem].cantidad + counter;
+      setCart([...cart]);
+    } else {
+      setCart([...cart, item]);
+    }
+  };
+
+  
   return (
     <>
       <div>
@@ -85,7 +111,17 @@ export const ItemCount = ({stock,onAdd,add,reduce,disableAdd,disableReduce,count
           </CardContent>
 
           <Box className={classes.Center} style={{ padding: "0px 10px 10px" }}>
-            <Button className={classes.ButtonAgregar} onClick={onAdd}>
+            <Button
+              className={classes.ButtonAgregar}
+              onClick={() =>
+                AddCart({
+                  title: title,
+                  id: id,
+                  precio: precio,
+                  cantidad: counter,
+                })
+              }
+            >
               Agregar al carrito
             </Button>
           </Box>

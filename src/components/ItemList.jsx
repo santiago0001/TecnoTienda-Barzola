@@ -21,7 +21,13 @@ export const ItemList = ({ category }) => {
           {Productos.map((item) =>
             category ? (
               category == item.category && (
-                <div style={{ display: "inline-block", padding: "10px" }}>
+                <div
+                  style={{
+                    display: "inline-block",
+                    padding: "10px"
+                    
+                  }}
+                >
                   <ItemProducto item={item} />
                 </div>
               )

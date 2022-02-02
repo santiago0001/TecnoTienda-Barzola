@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
     },
   },
+  Link: { color: "white", padding: "10px", textDecoration: "none" },
   sectionMobile: {
     display: "flex",
     [theme.breakpoints.up("md")]: {
@@ -177,7 +178,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/" style={{ color: "white", padding: "10px" }}>
+            <Link to="/" className={classes.Link}>
               {" "}
               TecnoTienda
             </Link>
@@ -196,25 +197,16 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <Box>
-            <Link to="/" style={{ color: "white", padding: "10px" }}>
+            <Link to="/" className={classes.Link}>
               Inicio
             </Link>
-            <Link
-              to="/Category/celulares"
-              style={{ color: "white", padding: "10px" }}
-            >
+            <Link to="/Category/celulares" className={classes.Link}>
               Celulares
             </Link>
-            <Link
-              to="/Category/Perifericos"
-              style={{ color: "white", padding: "10px" }}
-            >
+            <Link to="/Category/Perifericos" className={classes.Link}>
               Perifericos
             </Link>
-            <Link
-              to="/Category/Otros"
-              style={{ color: "white", padding: "10px" }}
-            >
+            <Link to="/Category/Otros" className={classes.Link}>
               Otros
             </Link>
           </Box>

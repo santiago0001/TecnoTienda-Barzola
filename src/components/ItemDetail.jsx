@@ -12,8 +12,10 @@ const ItemDetail = ({ item }) => {
       display: "flex",
     },
     img: {
+      objectFit: "scale-down",
       borderRadius: "20px",
       padding: "10px",
+      maxWidth: "400px",
     },
     button: {
       backgroundColor: "#3483fa",
@@ -63,15 +65,25 @@ const ItemDetail = ({ item }) => {
           </Box>
           <Box style={{ padding: "10px", marginTop: "20px" }}>
             {AddDisabled ? (
-              <ItemCount
-                onAdd={onAdd}
-                add={add}
-                reduce={reduce}
-                disableAdd={disableAdd}
-                disableReduce={disableReduce}
-                stock={item.stock}
-                counter={counter}
-              />
+              <div>
+                <ItemCount
+                  onAdd={onAdd}
+                  add={add}
+                  reduce={reduce}
+                  disableAdd={disableAdd}
+                  disableReduce={disableReduce}
+                  stock={item.stock}
+                  counter={counter}
+                  id={item.id}
+                  title={item.title}
+                  precio={item.precio}
+                />
+                <Link to="/cart">
+                  <Button size="large" className={classes.button}>
+                    Finalizar compra
+                  </Button>
+                </Link>
+              </div>
             ) : (
               <Link to="/cart">
                 <Button size="large" className={classes.button}>

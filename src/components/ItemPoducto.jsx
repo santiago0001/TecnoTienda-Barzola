@@ -13,11 +13,11 @@ import { Link } from "react-router-dom";
 export const ItemProducto = ({ item }) => {
   const useStyles = makeStyles({
     root: {
-      width: "100%",
-      backgroundColor: "#C8EAFC",
+      backgroundColor: "white",
       borderStyle: "solid",
       borderWidth: "0.5px",
       borderColor: "#B4B4B4",
+      minWidth: "300px",
     },
     bullet: {
       display: "inline-block",
@@ -37,10 +37,12 @@ export const ItemProducto = ({ item }) => {
     },
     Center: { display: "flex", justifyContent: "center" },
     img: {
-      width: "50%",
-      maxHeight: "200px",
+      objectFit: "scale-down",
+      width: "80%",
+      maxHeight: "100px",
       minHeight: "200px",
-      maxWidth: "100px",
+      padding: "10px",
+      maxWidth: "250px",
     },
     buttonAdd: { fontSize: "30px", padding: "0px" },
     ButtonRest: { fontSize: "50px", padding: "0px" },
@@ -49,7 +51,9 @@ export const ItemProducto = ({ item }) => {
       backgroundColor: "rgba(65,137,230,15)",
       padding: "10px 20px 10px;",
       borderRadius: "5px",
+      textDecoration: "none",
     },
+
     padding10: { padding: "10px" },
     Cantidad: { padding: "0px" },
   });
@@ -76,35 +80,38 @@ export const ItemProducto = ({ item }) => {
   return (
     <>
       <div>
-        <Card className={classes.root}>
-          <Box className={classes.Center}>
-            <img className={classes.img} src={item.srcimg} alt={item.title} />
-          </Box>
-          <Box className={classes.Center}>
-            <Typography variant="h6" component="h4">
-              {item.title}
-            </Typography>
-          </Box>
-          <Box className={classes.Center}></Box>
-          <CardContent className={classes.Cantidad}>
-            {item.stock === counter && (
-              <p style={{ color: "red" }}>* Llego al stock maximo</p>
-            )}
-            <Box className={classes.CarCount}>
-              Stock disponible: {item.stock}
+        <Link
+          title="Ver detalle del producto"
+          to={`/item/${item.id}`}
+          style={{ textDecoration: "none" }}
+        >
+          <Card className={classes.root}>
+            <Box className={classes.Center}>
+              <img className={classes.img} src={item.srcimg} alt={item.title} />
             </Box>
-          </CardContent>
+            <Box className={classes.Center}>
+              <Typography variant="h6" component="h4">
+                {item.title}
+              </Typography>
+            </Box>
+            <Box className={classes.Center}></Box>
+            <CardContent className={classes.Cantidad}>
+              {item.stock === counter && (
+                <p style={{ color: "red" }}>* Llego al stock maximo</p>
+              )}
+              <Box className={classes.CarCount}>
+                Stock disponible: {item.stock}
+              </Box>
+            </CardContent>
 
-          <Box className={classes.Center} style={{ padding: "0px 10px 10px" }}>
-            <Link
-              to={`/item/${item.id}`}
-              className={classes.ButtonAgregar}
-              style={{ color: "white", padding: "10px" }}
+            <Box
+              className={classes.Center}
+              style={{ padding: "0px 10px 10px" }}
             >
-              Ver detalle
-            </Link>
-          </Box>
-        </Card>
+              ${item.precio}
+            </Box>
+          </Card>
+        </Link>
       </div>
     </>
   );
