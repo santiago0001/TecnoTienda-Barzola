@@ -63,25 +63,10 @@ export const ItemCount = ({
     padding10: { padding: "10px" },
     Cantidad: { padding: "0px" },
   });
-  const { cart, setCart } = useContext(cartContext);
+  const { cart, AddCart } = useContext(cartContext);
 
   const classes = useStyles();
 
-  const isInCart = (id) => {
-    return cart.some((element) => element.id == id);
-  };
-
-  const AddCart = (item) => {
-    if (isInCart(item.id)) {
-      const indexItem = cart.findIndex((ele) => ele.id === item.id);
-      cart[indexItem].cantidad = cart[indexItem].cantidad + counter;
-      setCart([...cart]);
-    } else {
-      setCart([...cart, item]);
-    }
-  };
-
-  
   return (
     <>
       <div>
@@ -114,12 +99,15 @@ export const ItemCount = ({
             <Button
               className={classes.ButtonAgregar}
               onClick={() =>
-                AddCart({
-                  title: title,
-                  id: id,
-                  precio: precio,
-                  cantidad: counter,
-                })
+                AddCart(
+                  {
+                    title: title,
+                    id: id,
+                    precio: precio,
+                    cantidad: counter,
+                  },
+                  counter
+                )
               }
             >
               Agregar al carrito

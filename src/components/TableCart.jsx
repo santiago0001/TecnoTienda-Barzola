@@ -16,15 +16,9 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 export default function BasicTable() {
-  const { cart, setCart } = useContext(cartContext);
+  const { cart, setCart, deleteItem,deleteAll } = useContext(cartContext);
 
-  const deleteItem = (id) => {
-    let newArray = cart.filter((item) => item.id !== id);
-    setCart(newArray);
-  };
-  const deleteAll = (id) => {
-    setCart([]);
-  };
+
 
   return (
     <div>
