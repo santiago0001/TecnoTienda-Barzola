@@ -21,6 +21,7 @@ export const ItemCount = ({
   id,
   title,
   precio,
+  setFinCompra,
 }) => {
   const useStyles = makeStyles({
     root: {
@@ -98,7 +99,7 @@ export const ItemCount = ({
           <Box className={classes.Center} style={{ padding: "0px 10px 10px" }}>
             <Button
               className={classes.ButtonAgregar}
-              onClick={() =>
+              onClick={() => {
                 AddCart(
                   {
                     title: title,
@@ -107,8 +108,9 @@ export const ItemCount = ({
                     cantidad: counter,
                   },
                   counter
-                )
-              }
+                );
+                setFinCompra(true);
+              }}
             >
               Agregar al carrito
             </Button>

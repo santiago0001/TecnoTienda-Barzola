@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -17,6 +17,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import { Box, Button } from "@material-ui/core";
 import { CardWidget } from "./CardWidget";
 import { Link } from "react-router-dom";
+
+import { cartContext } from "../context/CartProvider";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -164,6 +166,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const { cart } = useContext(cartContext);
 
   return (
     <div className={classes.grow}>
@@ -213,6 +216,7 @@ export default function PrimarySearchAppBar() {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {cart.length > 0 && `Items:${cart.length}`}
             <CardWidget></CardWidget>
           </div>
         </Toolbar>

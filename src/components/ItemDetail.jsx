@@ -32,6 +32,7 @@ const ItemDetail = ({ item }) => {
   };
   const [counter, setCounter] = useState(1);
   const [AddDisabled, setAddDisabled] = useState(true);
+  const [FinCompra, setFinCompra] = useState(false);
 
   const onAdd = () => {
     setAddDisabled(false);
@@ -64,8 +65,8 @@ const ItemDetail = ({ item }) => {
             Descripcion: {item.description}
           </Box>
           <Box style={{ padding: "10px", marginTop: "20px" }}>
-            {AddDisabled ? (
-              <div>
+            <div>
+              {!FinCompra ? (
                 <ItemCount
                   onAdd={onAdd}
                   add={add}
@@ -77,20 +78,16 @@ const ItemDetail = ({ item }) => {
                   id={item.id}
                   title={item.title}
                   precio={item.precio}
+                  setFinCompra={setFinCompra}
                 />
+              ) : (
                 <Link to="/cart">
                   <Button size="large" className={classes.button}>
                     Finalizar compra
                   </Button>
                 </Link>
-              </div>
-            ) : (
-              <Link to="/cart">
-                <Button size="large" className={classes.button}>
-                  Finalizar compra
-                </Button>
-              </Link>
-            )}
+              )}
+            </div>
 
             <h2>Llega mañana</h2>
             <p> Cantidad: 1 unidad ({item.stock} disponibles) </p>

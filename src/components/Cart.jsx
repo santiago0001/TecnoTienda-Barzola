@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 
 import BasicTable from "./TableCart";
 const Cart = () => {
-  
   return (
     <div>
-      <h1>Soy el carrito</h1>
-      Tenes cargado:
+      <h1>Carrito</h1>
+
       <BasicTable></BasicTable>
     </div>
   );
