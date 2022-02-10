@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import ItemDetail from "./ItemDetail";
 import { getFirestore } from "../components/firebase/firebase";
 import LoadingProccess from "../LoadingProccess";
-const ItemDetailContainer = () => {
-  const [arrayDeProductos, setArrayDeProductos] = useState([]);
-  const { idItem } = useParams();
+import { ItemProducto } from "./ItemPoducto";
+
+export default function ItemsCollectionFire({ category }) {
   const [Productos, setProductos] = useState([]);
+  const [items, setItems] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,19 +37,28 @@ const ItemDetailContainer = () => {
         console.log(err);
       });
   }, []);
-
   return (
     <div>
       {!loading ? (
         <ul>
           <li style={{ listStyle: "none" }}>
-            {Productos.map(
-              (item) =>
-                idItem == item.id && (
-                  <div>
-                    <ItemDetail item={item} />
+            {Productos.map((item) =>
+              category ? (
+                category === item.category && (
+                  <div
+                    style={{
+                      display: "inline-block",
+                      padding: "10px",
+                    }}
+                  >
+                    <ItemProducto item={item} />
                   </div>
                 )
+              ) : (
+                <div style={{ display: "inline-block", padding: "10px" }}>
+                  <ItemProducto item={item} />
+                </div>
+              )
             )}
           </li>
         </ul>
@@ -61,6 +69,4 @@ const ItemDetailContainer = () => {
       )}
     </div>
   );
-};
-
-export default ItemDetailContainer;
+}

@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { ItemCount } from "./ItemPoducto";
+import ItemsCollectionFire from "./ItemsCollectionFire";
+
 
 import { ItemList } from "./ItemList";
+import TestItemFirebase from "./TestItemBase";
 
 export const ItemListContainer = (props) => {
   const { categoriaId } = useParams();
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <ItemList category={categoriaId} />
-      </div>
+      <ItemsCollectionFire category={categoriaId} />
     </div>
   );
 };
