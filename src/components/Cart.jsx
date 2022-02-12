@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 
+
 import BasicTable from "./TableCart";
 const Cart = () => {
   return (
@@ -7,6 +8,7 @@ const Cart = () => {
       <h1>Carrito</h1>
 
       <BasicTable></BasicTable>
+      
     </div>
   );
 };
