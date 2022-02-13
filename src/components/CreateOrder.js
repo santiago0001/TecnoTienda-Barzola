@@ -11,66 +11,84 @@ export default function TestForm({ setStep }) {
   const [Productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const nameRef = useRef();
-  const addressRef = useRef();
-  const cityRef = useRef();
-  const stateRef = useRef();
-  const emailRef = useRef();
-  const mobileRef = useRef();
+  const [Name, SetName] = useState();
+  const [addressRef, SetaddressRef] = useState();
+  const [cityRef, SetcityRef] = useState();
+  const [emailRef, SetemailRef] = useState();
+  const [stateRef, SestateRef] = useState();
+  const [mobileRef, SetmobileRef] = useState();
+  const [Warning, SetWarning] = useState(false);
+
+  // const nameRef = useRef();
+  // const addressRef = useRef();
+  // const cityRef = useRef();
+  // const stateRef = useRef();
+  // const emailRef = useRef();
+  // const mobileRef = useRef();
+  const FormComplet = () => {
+    if (Name && addressRef && cityRef && stateRef && mobileRef) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   function handleClick() {
-    setLoading(true);
-    const db = getFirestore();
-    const orders = db.collection("orders");
+    SetWarning(true);
+    if (FormComplet()) {
+      setLoading(true);
+      const db = getFirestore();
+      const orders = db.collection("orders");
 
-    const miOrden = {
-      buyer: {
-        name: nameRef.current.value,
-        address: addressRef.current.value,
-        city: cityRef.current.value,
-        state: stateRef.current.value,
-        email: emailRef.current.value,
-        mobile: mobileRef.current.value,
-      },
-      items: cart,
-      total: 1500,
-      date: firebase.firestore.Timestamp.fromDate(new Date()),
-    };
+      const miOrden = {
+        buyer: {
+          name: Name,
+          address: addressRef,
+          city: cityRef,
+          state: stateRef,
+          email: emailRef,
+          mobile: mobileRef,
+        },
+        items: cart,
+        total: 1500,
+        date: firebase.firestore.Timestamp.fromDate(new Date()),
+      };
 
-    orders
-      .add(miOrden)
-      .then(({ id }) => {
-        console.log("orden ingresada: " + id);
-        setOrderId(id);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      orders
+        .add(miOrden)
+        .then(({ id }) => {
+          console.log("orden ingresada: " + id);
+          setOrderId(id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    const itemCollection = db.collection("items");
+      const itemCollection = db.collection("items");
 
-    itemCollection
-      .get()
-      .then((querySnapShot) => {
-        if (querySnapShot.size == 0) {
-          console.log("no hay documentos con en ese query");
-          return;
-        }
+      itemCollection
+        .get()
+        .then((querySnapShot) => {
+          if (querySnapShot.size == 0) {
+            console.log("no hay documentos con en ese query");
+            return;
+          }
 
-        console.log("hay documentos");
+          console.log("hay documentos");
 
-        //console.log(querySnapShot.docs);
+          //console.log(querySnapShot.docs);
 
-        setProductos(
-          querySnapShot.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-          })
-        );
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          setProductos(
+            querySnapShot.docs.map((doc) => {
+              return { id: doc.id, ...doc.data() };
+            })
+          );
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   return (
@@ -84,43 +102,65 @@ export default function TestForm({ setStep }) {
       ) : (
         <div style={{ paddingLeft: "100px" }}>
           <h3>Ingresa tus datos:</h3>
-
           <input
             type="text"
             name="name"
-            ref={nameRef}
             placeholder="Nombre y Apelllido"
+            onChange={(event) => SetName(event.target.value)}
           />
+          {!Name && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
           <br />
-
           <input
             type="text"
             name="mobile"
-            ref={mobileRef}
             placeholder="Nro de Celular"
+            onChange={(event) => SetmobileRef(event.target.value)}
           />
+          {!mobileRef && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
           <br />
-
-          <input type="text" name="email" ref={emailRef} placeholder="Email" />
-          <br />
-
           <input
             type="text"
             name="state"
-            ref={stateRef}
             placeholder="Provincia"
-          />
+            onChange={(event) => SestateRef(event.target.value)}
+          />{" "}
+          {!stateRef && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
           <br />
-
-          <input type="text" name="city" ref={cityRef} placeholder="Ciudad" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={(event) => SetemailRef(event.target.value)}
+          />{" "}
+          {!emailRef && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
           <br />
-
+          <input
+            type="text"
+            name="city"
+            placeholder="Ciudad"
+            onChange={(event) => SetcityRef(event.target.value)}
+          />{" "}
+          {!cityRef && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
+          <br />
           <input
             type="text"
             name="address"
-            ref={addressRef}
             placeholder="Direccion"
-          />
+            onChange={(event) => SetaddressRef(event.target.value)}
+          />{" "}
+          {!addressRef && Warning && (
+            <span style={{ color: "red" }}> Falta completar</span>
+          )}
           <br />
           <div style={{ paddingTop: "30px" }}>
             <button style={{ cursor: "pointer" }} onClick={() => setStep(0)}>
