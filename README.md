@@ -2,7 +2,7 @@
 
 Navegar por las categorias de productos
 
-![Demonstration](https://media.giphy.com/media/uELz8qnjysKjRd8Yt4/giphy.gif)
+![Demonstration](https://media.giphy.com/media/COP9zgRKmAmAQ0p9FL/giphy.gif)
 
 ​
 Selecciona un producto!
@@ -35,13 +35,15 @@ Autor Santiago Lucas Barzola.
 - Vaciar carrito
 - Calcular total
   ​
+## WARNING 
+- **Firebase's Firestore 8.8.0** Es importante installar version. Otra podria generar errores
 
 ### TOOLS USED TO BUILD IT ​
 
 - **ReactJS**
 - **Create React App** -
 - **React Router DOM** -
-- **Firebase's Firestore** Para hacer mas practico la carga de datos al no tener back end
+- **Firebase's Firestore 8.8.0** Para hacer mas practico la carga de datos al no tener back end
 - **Material UI Version 4** Porque nos trae muchos estilos y hace mas facil el diseño
   ​
 
