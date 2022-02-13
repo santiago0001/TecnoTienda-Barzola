@@ -51,6 +51,7 @@ Autor Santiago Lucas Barzola.
 
 - Clone this repository, navigate to the repo's directory and run: **npm i**.
 - npm install @material-ui/core
+- npm install react-router-dom@5.2.0
 - After finished run: **npm start**.
 - npm install @material-ui/icons
 - The project should now be running on your browser.
