@@ -2,7 +2,7 @@
 
 Navegar por las categorias de productos
 
-![Demonstration](https://media.giphy.com/media/QfY7U1UcEH2pNavAkm/giphy-downsized-large.gif)
+![Demonstration](https://media.giphy.com/media/uELz8qnjysKjRd8Yt4/giphy-downsized-large.gif)
 
 ​
 Selecciona un producto!
